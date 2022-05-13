@@ -32,7 +32,6 @@ public class CardSearchController {
             System.out.printf(">>>>> image: %s", image);
         }
 
-
         mvc.addObject("name", name);
         mvc.addObject("images", images);
         mvc.setViewName("result");

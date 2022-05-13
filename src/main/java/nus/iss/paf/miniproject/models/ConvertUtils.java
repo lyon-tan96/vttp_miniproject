@@ -2,6 +2,7 @@ package nus.iss.paf.miniproject.models;
 
 import java.util.UUID;
 
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.util.MultiValueMap;
 
 public class ConvertUtils {
@@ -16,9 +17,17 @@ public class ConvertUtils {
         return user;
     }
 
+    public static User convert(SqlRowSet rs) {
+        User user = new User();
+        user.setEmail(rs.getString("email"));
+        user.setName(rs.getString("name"));
+        
+        return user;
+    }
+
     public static Card convertCard(MultiValueMap<String,String> form) {
         Card card = new Card();
-        card.setCardName(form.getFirst("fname"));
+        card.setCardName(form.getFirst("name"));
         return card;
     }
     
