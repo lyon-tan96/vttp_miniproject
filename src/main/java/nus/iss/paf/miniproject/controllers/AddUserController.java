@@ -32,7 +32,6 @@ public class AddUserController {
 
         ModelAndView mvc = new ModelAndView();
 
-
         if (userRepo.findUserByEmail(user.getEmail()).isPresent()) {
             mvc.addObject("email", user.getEmail());
             mvc.setViewName("existing");
@@ -47,7 +46,7 @@ public class AddUserController {
         }
         
         System.out.printf(">>> userid: %s" , user.getUserId());
-        mvc.addObject("name", user.getName());
+        mvc.addObject("name", user.getName().toUpperCase());
         mvc.addObject("email", user.getEmail());
         mvc.setViewName("search");
 

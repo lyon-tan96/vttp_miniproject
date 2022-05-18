@@ -21,12 +21,13 @@ public class CardService {
     public static final String CARD_SEARCH = "https://api.pokemontcg.io/v2/cards";
 
 
-    public List<String> getCards(String name) {
+    public List<String> getCards(String cardName) {
 
         List<String> result = new LinkedList<>();
 
         String url = UriComponentsBuilder.fromUriString(CARD_SEARCH)
-                    .queryParam("q", "name:%s".formatted(name))
+                    .queryParam("q", "name:%s".formatted(cardName))
+                    .queryParam("pageSize", 20)
                     .toUriString();
         
         RequestEntity<Void> req = RequestEntity.get(url).build();

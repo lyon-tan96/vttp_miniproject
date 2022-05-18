@@ -7,5 +7,7 @@ public interface Queries {
     public final static String SQL_INSERT_USER = "insert into users (user_id, name, email, password) values (?, ?, ?, sha1(?))";
 
     public final static String SQL_SELECT_USER_BY_EMAIL = "select * from users where email = ?";
+
+    public final static String SQL_UPDATE_SEARCH_HISTORY = "insert into search_history (search_term, email) values (?, ?)";
     
 }
