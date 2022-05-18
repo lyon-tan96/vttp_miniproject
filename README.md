@@ -1,3 +1,4 @@
 # vttp_miniproject
 
-![Deploy Heroku](https://github.com/lyon-tan96/vttp_miniproject/blob/master/.github/workflows/main.yaml?event=push)
+[![Deploy Heroku](https://github.com/lyon-tan96/vttp_miniproject/actions/workflows/main.yaml/badge.svg)]
+(https://github.com/lyon-tan96/vttp_miniproject/actions/workflows/main.yaml)
