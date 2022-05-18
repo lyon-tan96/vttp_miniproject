@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import static nus.iss.paf.miniproject.models.ConvertUtils.*;
 import static nus.iss.paf.miniproject.repositories.Queries.*;
 
 @Repository
