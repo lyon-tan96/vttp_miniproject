@@ -1,22 +1,47 @@
-# name: Deploy to Heroku
+name: Compile, Test
+
 on:
   push:
     branches:
       - master
 
 jobs:
-  # Pipeline 1
-
-  # Pipeline 2
-  deploy_to_heroku:
+  step1:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout src
-        uses: actions/checkout@v2
-      - name: Deploy
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{ secrets.heroku_api_key }}
-          heroku_app_name: lyon-vttp
-          heroku_email: ${{ secrets.email }}
-          branch: ${{ github.ref_name }}
+    - name: Checkout my repo
+      uses: actions/checkout@v3
+    - name: Setup Java 17
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    - name: Setup Maven
+      uses: stCarolas/setup-maven@v4.3
+      with:
+        maven-version: '3.8.4'
+    - name: Run Test
+      run: mvn clean verify
+    - name: Generate coverage badge
+      uses: cicirello/jacoco-badge-generator@v2
+      with:
+        generate-coverage-badge: true
+    - name: Upload coverage badge to DigitalOcean spaces
+      uses: BetaHuhn/do-spaces-action@v2
+      with:
+        access_key: ${{ secrets.access_key }}
+        secret_key: ${{ secrets.secret_key }}
+        space_name: frigo
+        space_region: sgp1
+        source: .github/badges/jacoco.svg
+        out_dir: coverage/${{ github.event.repository.name }}
+        permission: public-read
+    - name: Upload jacoco coverage report to DigitalOcean spaces
+      uses: BetaHuhn/do-spaces-action@v2
+      with:
+        access_key: ${{ secrets.access_key }}
+        secret_key: ${{ secrets.secret_key }}
+        space_name: frigo
+        space_region: sgp1
+        source: target/site/jacoco
+        out_dir: coverage/${{ github.event.repository.name }}/report

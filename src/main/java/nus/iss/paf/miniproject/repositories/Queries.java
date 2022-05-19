@@ -9,5 +9,7 @@ public interface Queries {
     public final static String SQL_SELECT_USER_BY_EMAIL = "select * from users where email = ?";
 
     public final static String SQL_UPDATE_SEARCH_HISTORY = "insert into search_history (search_term, email) values (?, ?)";
+
+    public final static String SQL_DELETE_USER_BY_EMAIL = "delete from users where email = ?";
     
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import nus.iss.paf.miniproject.services.UsersService;
@@ -28,11 +29,7 @@ public class AuthenticateController {
     }
 
     @PostMapping
-    public ModelAndView postMethodName(@RequestBody MultiValueMap<String,String> payload, HttpSession sess) {
-
-        String email = payload.getFirst("email");
-        String password = payload.getFirst("password");
-        String name = payload.getFirst("name");
+    public ModelAndView postMethodName(@RequestParam("name") String name, @RequestParam("email") String email, @RequestParam("password") String password, HttpSession sess) {
 
         System.out.printf(">>> name: %s, email: %s, password = %s\n", name, email, password);
 

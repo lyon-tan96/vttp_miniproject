@@ -38,5 +38,10 @@ public class UsersRepositories {
         int count = template.update(SQL_INSERT_USER, user.getUserId(), user.getName(), user.getEmail(), user.getPassword());
         return 1 == count;
     }
+
+    public boolean deleteUser(User user) {
+        int count = template.update(SQL_DELETE_USER_BY_EMAIL, user.getEmail());
+        return 1 == count;
+    }
     
 }
