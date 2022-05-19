@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">        
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <title>Search</title>
 </head>
 <body>
@@ -11,14 +13,24 @@
     <h2>Search for a Pokemon TCG card</h2>
 
     <form method="get" action="/search/cards">
-        <div>
-            <label for="name">Card Name: </label>
-            <input type="text" name="name">
-        </div>
-        <button type="submit">Search</button>
+        <td>
+            <div class="input-group mb-4 w-50">
+                <input type="search" placeholder="Search.." aria-describedby="button-addon5" name="name" class="form-control">  
+                <div class="input-group-append">  
+                  <button id="button-addon5" type="submit" class="btn btn-primary"> <i class="fa fa-search"> </i> </button>  
+                </div>  
+            </div>  
+        </td>
     </form>
+    <table>
+        <td>
         <form method="get" action="/authenticate/logout">
-            <button type="submit">Logout</button>
+            <button type="submit" class="btn btn-info">Logout</button>  
         </form>
+        <form>
+            
+        </form>
+        </td>
+    </table>
 </body>
 </html>

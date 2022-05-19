@@ -1,5 +1,7 @@
 package nus.iss.paf.miniproject;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.UUID;
 
 import org.junit.jupiter.api.AfterEach;
@@ -36,7 +38,7 @@ class MiniprojectApplicationTests {
 		User user = new User();
 		user.setUserId(UUID.randomUUID().toString().substring(0, 8));
 		user.setName("test");
-		user.setEmail("test@email.com");
+		user.setEmail("test@example.com");
 		user.setPassword("test");
 		return user;
 	}
@@ -52,8 +54,13 @@ class MiniprojectApplicationTests {
 	}
 
 	@AfterEach
-	public void deleteTestUser () {
+	public void deleteTestUser() {
 		usersRepo.deleteUser(fakeUserInfo());
+	}
+
+	@Test
+	public void userShouldExist() {
+		assertTrue(usersSvc.authenticate("test", "test@example.com", "test"));
 	}
 
 

@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">        
     <title>Result</title>
 </head>
 <body>
+    <div class="container-fluid">
         <h1>Your search for <span data-th-text="${name}"></span><h1>
-
-        <div data-th-each="i: ${images}">
-            <div>
-                <img data-th-src="${i}">
+        
+        <div class="row">
+            <div class="col-sm-3" data-th-each="i: ${images}">
+                <img class="img-fluid" data-th-src="${i}">
             </div>
         </div>
+    </div>
 </body>
 </html>

@@ -26,7 +26,7 @@ public class CardService {
         List<String> result = new LinkedList<>();
 
         String url = UriComponentsBuilder.fromUriString(CARD_SEARCH)
-                    .queryParam("q", "name:%s".formatted(cardName))
+                    .queryParam("q", "name:%s*".formatted(cardName))
                     .queryParam("pageSize", 20)
                     .toUriString();
         

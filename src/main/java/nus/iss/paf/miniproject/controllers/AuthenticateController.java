@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import nus.iss.paf.miniproject.services.UsersService;
 
@@ -40,9 +41,8 @@ public class AuthenticateController {
             return mvc;
         } else {
             sess.setAttribute("email", email);
-            mvc.addObject("name", name.toUpperCase());
-            mvc.setStatus(HttpStatus.ACCEPTED);
-            mvc.setViewName("search");
+            sess.setAttribute("name", name.toUpperCase());
+            mvc = new ModelAndView("redirect:/protected/search.html");
         }
         return mvc;
     }
