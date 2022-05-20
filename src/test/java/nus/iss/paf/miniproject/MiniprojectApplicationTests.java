@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
 
 import nus.iss.paf.miniproject.models.User;
 import nus.iss.paf.miniproject.repositories.UsersRepositories;
@@ -21,9 +20,6 @@ import nus.iss.paf.miniproject.services.UsersService;
 @SpringBootTest
 @AutoConfigureMockMvc
 class MiniprojectApplicationTests {
-
-	@Autowired
-	private MockMvc mockMvc;
 
 	@Autowired
 	private UsersRepositories usersRepo;
