@@ -42,6 +42,10 @@ public class CardService {
             ex.printStackTrace();
         }
 
+        if (resp == null) {
+            return result = null;
+        }
+
         JsonReader reader = Json.createReader(new StringReader(resp.getBody()));
         JsonObject cards = reader.readObject();
         JsonArray data = cards.getJsonArray("data");

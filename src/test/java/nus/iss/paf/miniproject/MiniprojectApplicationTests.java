@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import nus.iss.paf.miniproject.models.User;
 import nus.iss.paf.miniproject.repositories.UsersRepositories;
+import nus.iss.paf.miniproject.services.CardService;
 import nus.iss.paf.miniproject.services.UserException;
 import nus.iss.paf.miniproject.services.UsersService;
 
@@ -29,6 +30,9 @@ class MiniprojectApplicationTests {
 
 	@Autowired
 	private UsersService usersSvc;
+
+	@Autowired
+	private CardService cardSvc;
 
 	@Test
 	void contextLoads() {
@@ -61,6 +65,11 @@ class MiniprojectApplicationTests {
 	@Test
 	public void userShouldExist() {
 		assertTrue(usersSvc.authenticate("test", "test@example.com", "test"));
+	}
+
+	@Test
+	public void shouldLoadImages() {
+		assertTrue(cardSvc.getCards("pikachu") != null);
 	}
 
 

@@ -38,6 +38,12 @@ public class CardSearchController {
 
         List<String> images = cardSvc.getCards(name);
 
+        if (images == null) {
+            mvc.addObject("name", name.toUpperCase());
+            mvc.setViewName("search_error");
+            return mvc;
+        }
+
         for (String image : images) {
             System.out.printf(">>>>> image: %s", image);
         }
