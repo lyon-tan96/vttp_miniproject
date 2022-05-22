@@ -33,7 +33,7 @@ public class AuthenticateController {
 
         ModelAndView mvc = new ModelAndView();
         if (!usersSvc.authenticate(name, email, password)) {
-            mvc.setViewName("error");
+            mvc.setViewName("login_error");
             mvc.setStatus(HttpStatus.FORBIDDEN);
             return mvc;
         } else {

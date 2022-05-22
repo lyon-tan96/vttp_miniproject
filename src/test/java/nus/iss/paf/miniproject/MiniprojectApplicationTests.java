@@ -1,5 +1,7 @@
 package nus.iss.paf.miniproject;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.UUID;
@@ -12,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 
 import nus.iss.paf.miniproject.models.User;
+import nus.iss.paf.miniproject.repositories.SearchRepositories;
 import nus.iss.paf.miniproject.repositories.UsersRepositories;
 import nus.iss.paf.miniproject.services.CardService;
 import nus.iss.paf.miniproject.services.UserException;
@@ -29,6 +32,9 @@ class MiniprojectApplicationTests {
 
 	@Autowired
 	private CardService cardSvc;
+
+	@Autowired
+	private SearchRepositories searchRepo;
 
 	@Test
 	void contextLoads() {
@@ -55,6 +61,7 @@ class MiniprojectApplicationTests {
 
 	@AfterEach
 	public void deleteTestUser() {
+		searchRepo.deleteSearchHistory("test@example.com");
 		usersRepo.deleteUser(fakeUserInfo());
 	}
 
@@ -65,16 +72,21 @@ class MiniprojectApplicationTests {
 
 	@Test
 	public void shouldLoadImages() {
-		assertTrue(cardSvc.getCards("pikachu") != null);
+		assertFalse(cardSvc.getCards("pikachu", "test@example.com").isEmpty());
 	}
 
 	@Test
 	public void shouldBeEmpty() {
-		assertTrue(cardSvc.getCards("abc123").isEmpty());
+		Exception ex = assertThrows(IllegalArgumentException.class, () -> {
+			cardSvc.getCards("abc123", "test@gmail.com");
+		});
+		String expectedMessage = "Results not found for %s.".formatted("abc123");
+		String actualMessage = ex.getMessage();
+		assertTrue(actualMessage.contains(expectedMessage));
 	}
 
 	@Test
-	public void insertTestShouldFail() {
+	public void insertTestAccountShouldFail() {
 		User user = new User();
 		user.setUserId(UUID.randomUUID().toString().substring(0, 8));
 		user.setName("test");

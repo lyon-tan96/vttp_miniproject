@@ -16,5 +16,10 @@ public class SearchRepositories {
         int count = template.update(SQL_UPDATE_SEARCH_HISTORY, cardName, email);
         return 1 == count;
     }
+
+    public boolean deleteSearchHistory(String email) {
+        int count = template.update(SQL_DELETE_SEARCH_HISTORY_FOR_EMAIL, email);
+        return 1 == count;
+    }
     
 }

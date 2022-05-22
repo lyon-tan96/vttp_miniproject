@@ -8,23 +8,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Koulen&family=Lobster&family=Ubuntu:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Lobster&display=swap" rel="stylesheet">
     <style>
         h1 {
-            font-family: 'Ubuntu', sans-serif;
-            font-size:  50px;
+            font-family: 'Josefin Sans', sans-serif; 
         }
     </style>
-    <title>Error!</title>
+    <title>Invalid Login</title>
 </head>
 <body>
-        <h1>
-            No cards found. 
-            <br>
-            Please try again.
-        </h1>
-        <img src="/images/error.gif">
-        <br>
-        <input type="button" class="btn btn-info" value="Go Back" onclick="history.back()">
+    <h1>Invalid Login. Please try again.</h1>
+
+        <input type="button" class="btn btn-danger" value="Try again" onclick="history.back()">
+        <button type="button" class="btn btn-success" onclick="window.location.href = 'register';">Register</button>
+
 </body>
 </html>

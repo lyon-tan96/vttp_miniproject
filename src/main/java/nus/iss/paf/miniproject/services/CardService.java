@@ -4,9 +4,11 @@ import java.io.StringReader;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -14,14 +16,18 @@ import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
+import nus.iss.paf.miniproject.repositories.SearchRepositories;
 
 @Service
 public class CardService {
 
     public static final String CARD_SEARCH = "https://api.pokemontcg.io/v2/cards";
 
+    @Autowired
+    private SearchRepositories searchRepo;
 
-    public List<String> getCards(String cardName) {
+    @Transactional
+    public List<String> getCards(String cardName, String email) {
 
         List<String> result = new LinkedList<>();
 
@@ -52,6 +58,14 @@ public class CardService {
             String image = card.getJsonObject("images").getString("large");
             result.add(image);
         }
+
+        if (result.isEmpty()) {
+            throw new IllegalArgumentException("Results not found for %s.".formatted(cardName));
+        }
+
+        searchRepo.insertSearchHistory(cardName, email);
+
+
         
     return result;
 

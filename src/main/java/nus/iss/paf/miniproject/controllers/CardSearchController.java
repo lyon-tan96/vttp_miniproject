@@ -22,9 +22,6 @@ public class CardSearchController {
     @Autowired
     private CardService cardSvc;
 
-    @Autowired
-    private SearchRepositories searchRepo;
-
     @GetMapping("/cards")
     public ModelAndView searchCards(@RequestParam String name, HttpSession sess) {
 
@@ -32,11 +29,11 @@ public class CardSearchController {
 
         String email = (String)sess.getAttribute("email");
 
-        searchRepo.insertSearchHistory(name, email);
+        // searchRepo.insertSearchHistory(name, email);
 
         System.out.printf(">>>>>> cardName: %s, >>> email: %s", name, email);
 
-        List<String> images = cardSvc.getCards(name);
+        List<String> images = cardSvc.getCards(name, email);
 
         if (images.isEmpty()) {
             mvc.addObject("name", name.toUpperCase());
