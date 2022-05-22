@@ -68,5 +68,25 @@ class MiniprojectApplicationTests {
 		assertTrue(cardSvc.getCards("pikachu") != null);
 	}
 
+	@Test
+	public void shouldBeEmpty() {
+		assertTrue(cardSvc.getCards("abc123").isEmpty());
+	}
+
+	@Test
+	public void insertTestShouldFail() {
+		User user = new User();
+		user.setUserId(UUID.randomUUID().toString().substring(0, 8));
+		user.setName("test");
+		user.setEmail("test@example.com");
+		user.setPassword("test");
+		try {
+			usersSvc.addNewUser(user);
+		} catch (UserException e) {
+			assertTrue(true);
+			return;
+		}
+	}
+
 
 }

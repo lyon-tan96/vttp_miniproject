@@ -15,5 +15,10 @@ public class WebController {
     public String redirectToSearch() {
         return "search.html";
     }
+
+    @RequestMapping("/index")
+    public String redirectToIndex() {
+        return "index.html";
+    }
     
 }

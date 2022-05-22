@@ -38,7 +38,7 @@ public class CardSearchController {
 
         List<String> images = cardSvc.getCards(name);
 
-        if (images == null) {
+        if (images.isEmpty()) {
             mvc.addObject("name", name.toUpperCase());
             mvc.setViewName("search_error");
             return mvc;

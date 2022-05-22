@@ -42,9 +42,7 @@ public class CardService {
             ex.printStackTrace();
         }
 
-        if (resp == null) {
-            return result = null;
-        }
+        System.out.printf(">>>>> status: %s", resp.getStatusCode());
 
         JsonReader reader = Json.createReader(new StringReader(resp.getBody()));
         JsonObject cards = reader.readObject();
