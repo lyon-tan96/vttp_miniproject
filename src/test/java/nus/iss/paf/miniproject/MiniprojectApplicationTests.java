@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.junit.jupiter.api.AfterEach;
@@ -76,7 +77,7 @@ class MiniprojectApplicationTests {
 	}
 
 	@Test
-	public void shouldBeEmpty() {
+	public void searchShouldFail() {
 		Exception ex = assertThrows(IllegalArgumentException.class, () -> {
 			cardSvc.getCards("abc123", "test@gmail.com");
 		});
@@ -98,6 +99,11 @@ class MiniprojectApplicationTests {
 			assertTrue(true);
 			return;
 		}
+	}
+
+	@Test
+	public void findUser() {
+		assertTrue(usersRepo.findUserByEmail("test@example.com").isPresent());
 	}
 
 
