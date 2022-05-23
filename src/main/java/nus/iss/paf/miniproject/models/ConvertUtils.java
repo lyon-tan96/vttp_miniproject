@@ -25,10 +25,5 @@ public class ConvertUtils {
         return user;
     }
 
-    public static Card convertCard(MultiValueMap<String,String> form) {
-        Card card = new Card();
-        card.setCardName(form.getFirst("name"));
-        return card;
-    }
     
 }
