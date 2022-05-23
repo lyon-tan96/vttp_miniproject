@@ -2,8 +2,6 @@ package nus.iss.paf.miniproject;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -99,4 +97,13 @@ public class ControllerTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    void testRegister() throws Exception {
+        mvc.perform(MockMvcRequestBuilders
+                .get("/register"))
+                .andExpect(status().isOk());   
+    }
+
+
 }
