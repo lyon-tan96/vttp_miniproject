@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Optional;
 import java.util.UUID;
 
 import org.junit.jupiter.api.AfterEach;
@@ -62,7 +61,7 @@ class MiniprojectApplicationTests {
 
 	@AfterEach
 	public void deleteTestUser() {
-		searchRepo.deleteSearchHistory("test@example.com");
+		searchRepo.deleteSearchHistory("test@example.com", "pikachu");
 		usersRepo.deleteUser(fakeUserInfo());
 	}
 
@@ -105,6 +104,7 @@ class MiniprojectApplicationTests {
 	public void findUser() {
 		assertTrue(usersRepo.findUserByEmail("test@example.com").isPresent());
 	}
+
 
 
 }

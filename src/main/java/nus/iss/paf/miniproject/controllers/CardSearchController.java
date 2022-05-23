@@ -22,7 +22,7 @@ public class CardSearchController {
     private CardService cardSvc;
 
     @GetMapping("/cards")
-    public ModelAndView searchCards(@RequestParam String name, HttpSession sess) {
+    public ModelAndView searchCards(@RequestParam String cardName, HttpSession sess) {
 
         ModelAndView mvc = new ModelAndView();
 
@@ -30,12 +30,12 @@ public class CardSearchController {
 
         // searchRepo.insertSearchHistory(name, email);
 
-        System.out.printf(">>>>>> cardName: %s, >>> email: %s", name, email);
+        System.out.printf(">>>>>> cardName: %s, >>> email: %s", cardName, email);
 
-        List<String> images = cardSvc.getCards(name, email);
+        List<String> images = cardSvc.getCards(cardName, email);
 
         if (images.isEmpty()) {
-            mvc.addObject("name", name.toUpperCase());
+            mvc.addObject("name", cardName.toUpperCase());
             mvc.setViewName("search_error");
             return mvc;
         }
@@ -44,7 +44,7 @@ public class CardSearchController {
             System.out.printf(">>>>> image: %s", image);
         }
 
-        mvc.addObject("name", name.toUpperCase());
+        mvc.addObject("name", cardName.toUpperCase());
         mvc.addObject("images", images);
         mvc.setViewName("result");
 

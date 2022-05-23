@@ -15,6 +15,8 @@ import nus.iss.paf.miniproject.services.UsersService;
 
 import static nus.iss.paf.miniproject.models.ConvertUtils.*;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/newuser")
 public class AddUserController {
@@ -26,7 +28,7 @@ public class AddUserController {
     private UsersRepositories userRepo;
 
     @PostMapping
-    public ModelAndView postUser(@RequestBody MultiValueMap<String, String> form) {
+    public ModelAndView postUser(@RequestBody MultiValueMap<String, String> form, HttpSession sess) {
 
         User user = convert(form);
 
@@ -45,10 +47,11 @@ public class AddUserController {
             e.printStackTrace();
         }
         
-        System.out.printf(">>> userid: %s" , user.getUserId());
+        sess.setAttribute("name", user.getName());
+        sess.setAttribute("email", user.getEmail());
+        mvc = new ModelAndView("redirect:/protected/search.html");
+        System.out.printf(">>> userid: %s, >>> name: %s" , user.getUserId(), user.getName());
         mvc.addObject("name", user.getName().toUpperCase());
-        mvc.addObject("email", user.getEmail());
-        mvc.setViewName("search");
 
         return mvc;
     }

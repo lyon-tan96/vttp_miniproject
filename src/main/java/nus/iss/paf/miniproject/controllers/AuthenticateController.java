@@ -21,9 +21,11 @@ public class AuthenticateController {
     private UsersService usersSvc;
 
     @GetMapping("/logout")
-    public String getLogout(HttpSession sess) {
+    public ModelAndView getLogout(HttpSession sess) {
+        ModelAndView mvc = new ModelAndView();
         sess.invalidate();
-        return "index";
+        mvc = new ModelAndView("redirect:/index.html");
+        return mvc;
     }
 
     @PostMapping

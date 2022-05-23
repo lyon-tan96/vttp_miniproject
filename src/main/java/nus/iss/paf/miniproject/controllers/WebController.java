@@ -11,9 +11,9 @@ public class WebController {
         return "register";
     }
 
-    @RequestMapping("/search.html")
+    @RequestMapping("/search")
     public String redirectToSearch() {
-        return "search.html";
+        return "search";
     }
 
     @RequestMapping("/index")
