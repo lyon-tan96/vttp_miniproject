@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="container-fluid">
-        <h1>Your search for <span data-th-text="${name}"></span><h1>
+        <h1>Your search for <span data-th-text="${name}"></span><h1> <input type="button" class="btn btn-info" value="Go Back" onclick="history.back()">
         
         <div class="row">
             <div class="col-sm-3" data-th-each="i: ${images}">

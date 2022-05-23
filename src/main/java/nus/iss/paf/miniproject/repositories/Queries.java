@@ -13,5 +13,7 @@ public interface Queries {
     public final static String SQL_DELETE_USER_BY_EMAIL = "delete from users where email = ?";
 
     public final static String SQL_DELETE_SEARCH_HISTORY_FOR_EMAIL = "delete from search_history where email = ? and search_term = ?";
+
+    public final static String SQL_SELECT_SEARCH_HISTORY = "select * from search_history where email =?";
     
 }
