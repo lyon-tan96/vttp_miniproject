@@ -105,6 +105,4 @@ class MiniprojectApplicationTests {
 		assertTrue(usersRepo.findUserByEmail("test@example.com").isPresent());
 	}
 
-
-
 }

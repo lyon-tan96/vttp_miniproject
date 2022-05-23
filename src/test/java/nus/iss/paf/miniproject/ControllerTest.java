@@ -105,5 +105,16 @@ public class ControllerTest {
                 .andExpect(status().isOk());   
     }
 
+    @Test
+    void testWebController() throws Exception {
+        mvc.perform(MockMvcRequestBuilders
+                .get("/index"))
+                .andExpect(status().isOk());
+
+        mvc.perform(MockMvcRequestBuilders
+                .get("/search"))
+                .andExpect(status().isOk());
+    }
+
 
 }
